@@ -1,0 +1,204 @@
+
+/* =========================================
+   CARD STACK
+   Preserve the original grid-based layout.
+========================================= */
+
+.swipe-card-area {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+
+  padding-block: 12px 28px;
+  margin-block: -12px -28px;
+
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: grab;
+}
+
+.swipe-card-area:active {
+  cursor: grabbing;
+}
+
+/* =========================================
+   QUESTION CARDS
+   NGL-inspired clean white card appearance.
+========================================= */
+
+.swipe-question-card {
+  grid-area: 1 / 1;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+
+  padding: 2rem;
+
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 24px;
+
+  box-shadow:
+    0 1px 3px rgba(16, 24, 40, 0.035),
+    0 4px 12px rgba(16, 24, 40, 0.025),
+    0 16px 36px -14px rgba(16, 24, 40, 0.10);
+
+  overflow-wrap: anywhere;
+
+  /* Position is controlled by animejs. */
+  transition: none;
+  animation: none;
+  opacity: 1;
+  filter: none;
+
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.swipe-active-card {
+  z-index: 2;
+}
+
+.swipe-preview-card {
+  z-index: 1;
+}
+
+/* Allow all card content to shrink naturally. */
+.swipe-question-card * {
+  min-width: 0;
+}
+
+/* =========================================
+   QUESTION HEADER
+========================================= */
+
+.swipe-question-card h2 {
+  color: #101828;
+  letter-spacing: -0.025em;
+}
+
+/* =========================================
+   RATING BUTTONS
+========================================= */
+
+.rating-option {
+  min-height: 92px;
+  padding: 1rem 0.75rem;
+
+  border-radius: 18px;
+  border: 1px solid #e4e7ec;
+
+  background: #ffffff;
+  color: #475467;
+
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.rating-option:hover {
+  border-color: #a7d8b5;
+  background: #f8fcf9;
+}
+
+.rating-option:active {
+  transform: scale(0.97);
+}
+
+.rating-option:focus-visible {
+  outline: 3px solid rgba(22, 163, 74, 0.25);
+  outline-offset: 3px;
+}
+
+.rating-option:disabled {
+  cursor: default;
+}
+
+/* =========================================
+   PROGRESS CARD
+========================================= */
+
+.swipe-progress-card {
+  padding: 20px 22px;
+
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 20px;
+
+  box-shadow:
+    0 1px 3px rgba(16, 24, 40, 0.025),
+    0 6px 18px rgba(16, 24, 40, 0.035);
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.swipe-card-area + div button {
+  min-height: 48px;
+  border-radius: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (min-width: 640px) {
+  .swipe-question-card {
+    padding: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .swipe-question-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .rating-option {
+    min-height: 82px;
+    padding: 0.875rem 0.625rem;
+    border-radius: 16px;
+  }
+
+  .swipe-progress-card {
+    padding: 17px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .swipe-question-card {
+    padding: 1.25rem 1rem;
+    border-radius: 18px;
+  }
+
+  .rating-option {
+    min-height: 76px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-question-card {
+    will-change: auto;
+  }
+
+  .rating-option {
+    transition: none !important;
+  }
+}

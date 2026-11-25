@@ -1,0 +1,24 @@
+
+import axios from "axios";
+
+const api = axios.create({
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "http://192.168.0.159:8000/api",
+
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+api.interceptors.request.use((config) => {
+  const accessToken = sessionStorage.getItem("access_token");
+
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+  return config;
+});
+
+export default api;
